@@ -14,17 +14,17 @@ public class Registrar {
 
     public void addStudent(Student newStudent) {
         myClass.add(newStudent);
-        System.out.println(newStudent.name + " is added!");
+        System.out.println(newStudent.getName() + " is added!");
     }
 
     public void markStudentPresent(String presentStudentName) {
         boolean studentFound = false;
 
         for (Student student: myClass) {
-            if (student.name.equals(presentStudentName)) {
-                student.isPresent = true;
+            if (student.getName().equals(presentStudentName)) {
+                student.setPresent(true);
                 studentFound = true;
-                System.out.println(student.name + " marked as present!");
+                System.out.println(student.getName() + " marked as present!");
             }
         }
 
@@ -42,7 +42,7 @@ public class Registrar {
         int count = 0;
 
         for(Student student: myClass) {
-            if (student.isPresent) {
+            if (student.isPresent()) {
                 count++;
             }
         }
@@ -55,7 +55,7 @@ public class Registrar {
         }
 
         for (Student student: myClass) {
-            System.out.print(student.name + ": " + (student.isPresent ? "Present, " : "Absent, "));
+            System.out.print(student.getName() + ": " + (student.isPresent() ? "Present, " : "Absent, "));
         }
     }
 
@@ -66,7 +66,7 @@ public class Registrar {
         }
 
         for(Student student: myClass) {
-            student.isPresent = false;
+            student.setPresent(false);
         }
     }
 }
