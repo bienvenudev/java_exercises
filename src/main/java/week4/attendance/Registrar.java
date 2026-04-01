@@ -61,6 +61,7 @@ public class Registrar {
     public void displayAllStudents() {
         if (myClass.isEmpty()) {
             System.out.println("No students available in your class!");
+            return;
         }
 
         for (Student student : myClass) {
