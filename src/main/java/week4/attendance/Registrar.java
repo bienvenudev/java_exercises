@@ -23,12 +23,13 @@ public class Registrar {
 
     public void markStudentPresent(String presentStudentName) {
         if (myClass.isEmpty()) {
-            System.out.println("No students in your class!");
+            System.out.println("No students available in your class!");
             return;
-        } else {
-            boolean studentFound = false;
+        }
 
-            for (Student student : myClass) {
+        boolean studentFound = false;
+
+        for (Student student : myClass) {
                 if (student.getName().equals(presentStudentName)) {
                     student.setPresent(true);
                     studentFound = true;
@@ -37,16 +38,8 @@ public class Registrar {
             }
 
             if (!studentFound) {
-                System.out.println("Wrong name, Please enter the correct name."); // would love to map through students
-                                                                                  // and
-                                                                                  // do System.out.println("Wrong name,
-                                                                                  // Please enter the correct name.\n
-                                                                                  // Your
-                                                                                  // students are: " +
-                                                                                  // myClass.stream().map(Student
-                                                                                  // student)
+                System.out.println("Wrong name, Students are:  " + myClass.stream().map(Student::getName).toList());
             }
-        }
     }
 
     public void displayAttendanceSummary() {
@@ -67,7 +60,7 @@ public class Registrar {
 
     public void displayAllStudents() {
         if (myClass.isEmpty()) {
-            System.out.println("No students in your class!");
+            System.out.println("No students available in your class!");
         }
 
         for (Student student : myClass) {
