@@ -1,17 +1,14 @@
 package week4.attendance;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Scanner;
 
 public class Attendance {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        boolean switcher = true;
+        boolean isRunning = true;
         Registrar registrar = new Registrar();
-        Set<String> uniqueNames = new HashSet<>();
 
-        while (switcher) {
+        while (isRunning) {
             System.out.println(
                     "\nInput\n1: Add student\n2: Mark student as present\n3: See how many students present\n4: Display all students\n5: Mark all students absent\n6: Terminate program");
             int choice = scanner.nextInt();
@@ -22,24 +19,16 @@ public class Attendance {
                     // Scanner scanner1 = new Scanner(System.in);
                     String newStudentName = scanner.nextLine();
 
-                    if (uniqueNames.add(newStudentName)) {
-                        registrar.addStudent(new Student(newStudentName, false));
-                    } else {
-                        System.out.println("Student already exists!");
-                    }
+                    registrar.addStudent(new Student(newStudentName, false));
                     break;
                 case 2:
-                    if (registrar.getMyClass().isEmpty()) {
-                        System.out.println("No students in your class!");
-                        break;
-                    }
                     System.out.println("Enter name of present student");
                     String presentStudentName = scanner.nextLine();
 
                     registrar.markStudentPresent(presentStudentName);
                     break;
                 case 3:
-                    registrar.presentAttendance();
+                    registrar.displayAttendanceSummary();
                     break;
                 case 4:
                     registrar.displayAllStudents();
@@ -48,7 +37,7 @@ public class Attendance {
                     registrar.markAllAbsent();
                     break;
                 case 6:
-                    switcher = false;
+                    isRunning = false;
                     break;
                 default:
                     System.out.println("Wrong input!\n Retry\n");

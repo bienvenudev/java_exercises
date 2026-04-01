@@ -1,47 +1,63 @@
 package week4.attendance;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 // admit students, mark them as present, count present students, display all students w/ attendance status;
 
 public class Registrar {
     private final List<Student> myClass = new ArrayList<>();
-
-    public List<Student> getMyClass() {
-        return myClass;
-    }
+    private final Set<String> uniqueNames = new HashSet<>();
 
     public void addStudent(Student newStudent) {
-        myClass.add(newStudent);
-        System.out.println(newStudent.getName() + " is added!");
+        if (uniqueNames.add(newStudent.getName())) {
+            myClass.add(newStudent);
+            System.out.println(newStudent.getName() + " is added!");
+        } else {
+            System.out.println("Student already exists!");
+
+        }
     }
 
     public void markStudentPresent(String presentStudentName) {
-        boolean studentFound = false;
+        if (myClass.isEmpty()) {
+            System.out.println("No students in your class!");
+            return;
+        } else {
+            boolean studentFound = false;
 
-        for (Student student: myClass) {
-            if (student.getName().equals(presentStudentName)) {
-                student.setPresent(true);
-                studentFound = true;
-                System.out.println(student.getName() + " marked as present!");
+            for (Student student : myClass) {
+                if (student.getName().equals(presentStudentName)) {
+                    student.setPresent(true);
+                    studentFound = true;
+                    System.out.println(student.getName() + " marked as present!");
+                }
             }
-        }
 
-        if(!studentFound) {
-            System.out.println("Wrong name, Please enter the correct name."); // would love to map through students and do System.out.println("Wrong name, Please enter the correct name.\n Your students are: " + myClass.stream().map(Student student)
+            if (!studentFound) {
+                System.out.println("Wrong name, Please enter the correct name."); // would love to map through students
+                                                                                  // and
+                                                                                  // do System.out.println("Wrong name,
+                                                                                  // Please enter the correct name.\n
+                                                                                  // Your
+                                                                                  // students are: " +
+                                                                                  // myClass.stream().map(Student
+                                                                                  // student)
+            }
         }
     }
 
-    public void presentAttendance() {
-        if(myClass.isEmpty()) {
+    public void displayAttendanceSummary() {
+        if (myClass.isEmpty()) {
             System.out.println("No students available in your class!");
             return;
         }
 
         int count = 0;
 
-        for(Student student: myClass) {
+        for (Student student : myClass) {
             if (student.isPresent()) {
                 count++;
             }
@@ -50,11 +66,11 @@ public class Registrar {
     }
 
     public void displayAllStudents() {
-        if(myClass.isEmpty()) {
+        if (myClass.isEmpty()) {
             System.out.println("No students in your class!");
         }
 
-        for (Student student: myClass) {
+        for (Student student : myClass) {
             System.out.print(student.getName() + ": " + (student.isPresent() ? "Present, " : "Absent, "));
         }
     }
@@ -65,7 +81,7 @@ public class Registrar {
             return;
         }
 
-        for(Student student: myClass) {
+        for (Student student : myClass) {
             student.setPresent(false);
         }
     }
