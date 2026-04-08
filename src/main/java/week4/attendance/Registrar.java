@@ -1,15 +1,19 @@
 package week4.attendance;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Scanner;
 import java.util.List;
 import java.util.Set;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 // admit students, mark them as present, count present students, display all students w/ attendance status;
 
 public class Registrar {
     private final List<Student> myClass = new ArrayList<>();
     private final Set<String> uniqueNames = new HashSet<>();
+
+    Scanner scanner = new Scanner(System.in);
+
 
     public void addStudent(Student newStudent) {
         if (uniqueNames.add(newStudent.getName())) {
@@ -21,11 +25,14 @@ public class Registrar {
         }
     }
 
-    public void markStudentPresent(String presentStudentName) {
+    public void markStudentPresent() {
         if (myClass.isEmpty()) {
             System.out.println("No students available in your class!");
             return;
         }
+
+        System.out.println("Enter name of present student");
+        String presentStudentName = scanner.nextLine();
 
         boolean studentFound = false;
 

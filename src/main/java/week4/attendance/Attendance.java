@@ -22,10 +22,7 @@ public class Attendance {
                     registrar.addStudent(new Student(newStudentName, false));
                     break;
                 case 2:
-                    System.out.println("Enter name of present student");
-                    String presentStudentName = scanner.nextLine();
-
-                    registrar.markStudentPresent(presentStudentName);
+                    registrar.markStudentPresent();
                     break;
                 case 3:
                     registrar.displayAttendanceSummary();
