@@ -1,0 +1,43 @@
+2026-01-01 10:00:00 INFO User123 logged in successfully
+2026-01-01 10:05:00 ERROR User456 failed login
+2026-01-01 10:10:00 WARNING UserABC disk usage above 80%
+2026-01-01 10:15:00 ERROR User789 failed login
+2026-01-01 10:20:00 INFO User123 logged out
+2026-01-01 10:25:00 ERROR User456 failed login
+2026-01-01 10:30:00 INFO UserXYZ session started
+2026-01-01 10:35:00 WARNING User123 multiple requests detected
+2026-01-01 10:40:00 ERROR UserABC unauthorized access attempt
+2026-01-01 10:45:00 INFO User456 password changed successfully
+2026-01-01 10:50:00 DEBUG User999 verbose trace output
+2026-01-01 10:55:00 ERROR User789 failed login
+2026-01-01 11:00:00 CRITICAL UserXYZ system breach attempted
+2026-01-01 11:05:00 WARNING UserABC memory usage spiking
+2026-01-01 11:10:00 INFO User123 logged in successfully
+This line is completely malformed and should be ignored
+2026-01-01 11:20:00 ERROR
+2026-01-01 11:25:00 INFO User456 logged in successfully
+
+2026-01-01 11:30:00 WARNING User789 disk quota exceeded
+BADTIMESTAMP ERROR User123 something went wrong
+2026-01-01 11:35:00 INFO UserABC configuration reloaded
+2026-01-01 11:40:00 ERROR User123 failed login
+2026-01-01 11:45:00 INFO UserXYZ file uploaded
+2026-01-01 10:05:00 ERROR User456 failed login
+2026-01-01 11:50:00 WARNING User999 high CPU usage
+2026-01-01 10:25:00 ERROR User456 failed login
+2026-01-01 11:55:00 INFO User789 session ended
+2026-01-01 12:00:00 ERROR UserABC failed login
+2026-01-01 12:05:00 INFO User123 profile updated
+2026-01-01 12:10:00 WARNING UserXYZ unusual login location
+2026-01-01 12:15:00 ERROR User999 service timeout
+2026-01-01 12:20:00 INFO User456 logged out
+2026-01-01 12:25:00 ERROR User123 failed login
+2026-01-01 12:30:00 INFO UserABC backup completed
+2026-01-01 12:35:00 WARNING User789 retry limit approaching
+2026-01-01 12:40:00 ERROR UserXYZ connection refused
+2026-01-01 12:45:00 INFO User999 scheduled task ran
+2026-01-01 INFO missing timestamp field here
+random garbage text 12345 !! @@ ##
+2026-01-01 12:50:00 ERROR User456 failed login
+2026-01-01 12:55:00 WARNING User123 session expiring soon
+2026-01-01 13:00:00 INFO UserABC logged in successfully
