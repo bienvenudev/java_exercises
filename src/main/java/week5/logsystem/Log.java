@@ -32,6 +32,8 @@ public class Log {
         }
 
 //        System.out.println(cleanLines);
+
+//        Phase 2:
 //  \d{4}-(0[1-9]|1[0-2])-([012][0-9]|3[01])\s[0-2][0-3]:[0-5][0-9]:[0-5][0-9]
         Pattern timePattern = Pattern.compile("\\d{4}-(0[1-9]|1[0-2])-([012][0-9]|3[01])\\s[0-2][0-3]:[0-5][0-9]:[0-5][0-9]");
         Pattern levelPattern = Pattern.compile("ERROR|INFO|WARNING");
@@ -45,11 +47,48 @@ public class Log {
             Matcher messageMatcher = messagePattern.matcher(line);
 
             while(timeMatcher.find() & levelMatcher.find() & messageMatcher.find()) {
-//                System.out.println(timeMatcher.group() + " " + levelMatcher.group() + " " + messageMatcher.group());
+                System.out.println(timeMatcher.group() + " " + levelMatcher.group() + " " + messageMatcher.group());
                 logEntries.add(new LogEntry(timeMatcher.group(),levelMatcher.group(), messageMatcher.group()));
             }
         }
 
-        System.out.println(logEntries);
+//        System.out.println(logEntries);
+
+//      Phase 3 - only implemented extract username from message and didn't use it anywhere! -- a bit confused about the Remove logical duplicates step since i think i took care of that in the set, unless they are asking to stay with one error, warning, and info and i highly doubt that is the case
+        Pattern userPattern = Pattern.compile("User\\w{3}");
+        for (LogEntry user: logEntries) {
+            Matcher userMatcher = userPattern.matcher(user.message);
+            while (userMatcher.find()) {
+//        System.out.println(userMatcher.group()); -- not using it anywhere -- ooops using it in phase 4
+
+        }
+}
+
+// Phase 4 -- have logsperlevel, errorsperuser, and user with most errors but not most frequent error message
+        Map<String, Integer> logsPerLevel = new HashMap<>();
+//        User123: 3
+        Map<String, Integer> errorsPerUser = new HashMap<>();
+
+        for (LogEntry user: logEntries) {
+            if(!logsPerLevel.containsKey(user.level)) {
+                logsPerLevel.put(user.level, 1);
+            } else {
+                logsPerLevel.merge(user.level, 1, Integer::sum); // i don't really understand this syntax just found it on Google, but it works
+            }
+        }
+
+        for (LogEntry user: logEntries) {
+            Matcher userMatcher = userPattern.matcher(user.message);
+            while(userMatcher.find()) {
+                if (!errorsPerUser.containsKey(userMatcher.group())) {
+                    errorsPerUser.put(userMatcher.group(), 1);
+                } else {
+                    errorsPerUser.merge(userMatcher.group(), 1, Integer::sum);
+                }
+            }
+        }
+
+        System.out.println(logsPerLevel);
+        System.out.println(errorsPerUser); // userabc has most errors
     }
 }
