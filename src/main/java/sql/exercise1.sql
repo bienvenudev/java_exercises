@@ -18,28 +18,18 @@ UPPER(CONCAT('john', ' ', 'doe')) AS full_name,
 -- Part C
 SELECT
 'JOHN DOE' AS full_name,
-187.425 * 703 / ((1.75 * 39.37) * (1.75 * 39.37)) AS BMI,
-'101.3' AS temperature_f,
-CASE
-WHEN 101.3 > 100.4 THEN 'true'
-ELSE 'false'
-END AS has_fever;
-
-SET @BMI = 27.7572168;
-SET @Fever = TRUE;
-SET @FULLNAME = 'JOHN DOE';
+ROUND(187.425 / ((1.75 * 39.3701) * (1.75 * 39.3701)) * 703, 2) AS bmi,
+101.3 AS temperature_f,
+ CASE WHEN 101.3 > 100.4 THEN 1 ELSE 0 END AS has_fever;
 
 -- Part D
 SELECT
 'JOHN DOE' AS full_name,
 27.7572168 AS BMI,
+CASE WHEN 27.76 > 25 THEN 1 ELSE 0 END AS is_overweight,
+CASE WHEN 101.3 > 100.4 THEN 1 ELSE 0 END AS has_fever,
 CASE
-WHEN 27.7572168 > 25 THEN 'TRUE'
-ELSE 'FALSE'
-END AS is_overweight,
-'TRUE' AS has_fever,
-CASE
-WHEN @BMI > 25 OR @Fever = TRUE
-THEN CONCAT(@FULLNAME, ' - ', 'AT RISK') 
-ELSE CONCAT(@FULLNAME, ' - ', 'HEALTHY')
+	WHEN 27.76 > 25 OR 101.3 > 100.4
+	THEN CONCAT('JOHN DOE', ' - AT RISK')
+	ELSE CONCAT('JOHN DOE', ' - HEALTHY')
 END AS health_tag;
